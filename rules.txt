@@ -1,0 +1,65 @@
+**Specyfikacja techniczna aplikacji Angielski to Pestka**
+
+### **1. Struktura aplikacji**
+Aplikacja Angielski to Pestka zostanie stworzona w oparciu o technologie frontendowe (HTML, CSS, JavaScript) oraz Django jako backend. Główna struktura będzie budowana na HTML z dynamicznymi elementami zarządzanymi przez JavaScript i Django.
+
+#### **1.1. Podstawowe strony aplikacji**
+- **Strona główna** – wprowadzenie do aplikacji, opcja logowania/rejestracji.
+- **Panel użytkownika** – przegląd zdobytych punktów, dostęp do zadań i nagród.
+- **Strona z zadaniami** – interaktywne zadania podzielone na kategorie.
+- **Strona sklepu z nagrodami** – wymiana punktów na personalizowane elementy awatara.
+- **Panel administratora** – zarządzanie zadaniami i użytkownikami.
+
+### **2. Implementacja funkcjonalności**
+
+#### **2.1. Rejestracja i logowanie użytkowników**
+- Formularz rejestracyjny w HTML, obsługiwany przez Django Authentication System.
+- Hasła przechowywane jako zahashowane wartości.
+- Możliwość logowania za pomocą e-maila i hasła.
+
+#### **2.2. System zadań i punktacji**
+- **Baza danych Django:**
+  - Model `Task` przechowujący ID zadania, kategorię, treść oraz poprawne odpowiedzi.
+  - Model `UserProgress` przypisujący użytkownikom zdobyte punkty oraz rozwiązane zadania.
+- **Interfejs użytkownika:**
+  - Lista dostępnych kategorii.
+  - Interaktywne formularze do rozwiązywania zadań (JS obsługujący interakcje bez przeładowywania strony).
+  - Sprawdzanie poprawności odpowiedzi w JS oraz zapis wyniku w bazie przez API Django.
+  
+#### **2.3. System nagród**
+- **Baza danych Django:**
+  - Model `Reward` przechowujący nazwy nagród i ich wartości w punktach.
+  - Model `UserInventory` przechowujący zdobyte nagrody.
+- **Interfejs użytkownika:**
+  - Sklep z nagrodami aktualizowany dynamicznie za pomocą JS.
+  - Możliwość wyboru nagród i wymiany punktów na przedmioty personalizacyjne.
+
+#### **2.4. Motywacja użytkowników (streaks i rankingi)**
+- **System streaków:**
+  - Codzienna aktywność użytkownika zapisywana w bazie.
+  - Nagrody za utrzymanie aktywności przez określoną liczbę dni.
+- **Rankingi:**
+  - Strona z listą najlepszych użytkowników generowana dynamicznie na podstawie punktów.
+
+#### **2.5. Panel administratora**
+- Możliwość dodawania, edytowania i usuwania zadań przez interfejs webowy.
+- Przegląd statystyk użytkowników.
+- Zarządzanie nagrodami.
+
+### **3. Struktura plików aplikacji**
+- **Frontend:**
+  - `index.html` – strona główna.
+  - `tasks.html` – strona z zadaniami.
+  - `rewards.html` – strona sklepu.
+  - `profile.html` – profil użytkownika.
+  - `admin.html` – panel administratora.
+  - `styles.css` – stylizacja aplikacji.
+  - `script.js` – logika interakcji użytkownika.
+- **Backend (Django):**
+  - `models.py` – modele bazy danych.
+  - `views.py` – obsługa żądań HTTP.
+  - `urls.py` – routing.
+  - `api.py` – obsługa zapytań JS do backendu.
+
+**Podsumowanie:**  
+Aplikacja Angielski to Pestka będzie zbudowana w oparciu o HTML, CSS i JS dla frontendu, natomiast Django będzie wykorzystywane jako backend do obsługi użytkowników, zadań i nagród. Interakcje będą obsługiwane asynchronicznie za pomocą JavaScript, aby zapewnić dynamiczne i płynne działanie aplikacji.

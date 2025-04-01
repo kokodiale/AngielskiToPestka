@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadania - Angielski to Pestka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Angielski to Pestka" class="logo-image">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Strona główna</a>
+                <a href="tasks.html" class="nav-link active">Zadania</a>
+                <a href="rewards.html" class="nav-link">Nagrody</a>
+                <a href="ranking.html" class="nav-link">Ranking</a>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Zaloguj się</button>
+                    <button class="btn btn-register">Zarejestruj się</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div id="auth-required" class="auth-required-message">
+            <h2>Dostęp wymaga logowania</h2>
+            <p>Zaloguj się, aby otrzymać dostęp do zadań i rozpocząć naukę!</p>
+            <button class="btn btn-primary" onclick="showLoginModal()">Zaloguj się</button>
+        </div>
+
+        <div id="tasks-content" class="tasks-container" style="display: none;">
+            <div class="tasks-header">
+                <h2>Dostępne zadania</h2>
+                <div class="tasks-filters">
+                    <select class="filter-select" id="difficultyFilter">
+                        <option value="all">Wszystkie poziomy</option>
+                        <option value="beginner">Początkujący</option>
+                        <option value="intermediate">Średniozaawansowany</option>
+                        <option value="advanced">Zaawansowany</option>
+                    </select>
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">Wszystkie kategorie</option>
+                        <option value="grammar">Gramatyka</option>
+                        <option value="vocabulary">Słownictwo</option>
+                        <option value="pronunciation">Wymowa</option>
+                        <option value="conversation">Konwersacje</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tasks-grid">
+                <div class="task-card">
+                    <div class="task-header">
+                        <h3>Present Perfect</h3>
+                        <span class="difficulty beginner">Początkujący</span>
+                    </div>
+                    <div class="task-details">
+                        <p class="category">Kategoria: Gramatyka</p>
+                        <p class="deadline">Termin: 2024-04-30</p>
+                        <p class="points">Punkty: 50</p>
+                    </div>
+                    <p class="task-description">Poznaj i przećwicz czas Present Perfect w różnych kontekstach.</p>
+                    <button class="btn btn-primary">Rozpocznij</button>
+                </div>
+                <div class="task-card">
+                    <div class="task-header">
+                        <h3>Business Vocabulary</h3>
+                        <span class="difficulty intermediate">Średniozaawansowany</span>
+                    </div>
+                    <div class="task-details">
+                        <p class="category">Kategoria: Słownictwo</p>
+                        <p class="deadline">Termin: 2024-05-15</p>
+                        <p class="points">Punkty: 75</p>
+                    </div>
+                    <p class="task-description">Rozszerz swoje słownictwo biznesowe o nowe wyrażenia i zwroty.</p>
+                    <button class="btn btn-primary">Rozpocznij</button>
+                </div>
+                <div class="task-card">
+                    <div class="task-header">
+                        <h3>British vs American</h3>
+                        <span class="difficulty advanced">Zaawansowany</span>
+                    </div>
+                    <div class="task-details">
+                        <p class="category">Kategoria: Wymowa</p>
+                        <p class="deadline">Termin: 2024-05-30</p>
+                        <p class="points">Punkty: 100</p>
+                    </div>
+                    <p class="task-description">Poznaj różnice między wymową brytyjską a amerykańską.</p>
+                    <button class="btn btn-primary">Rozpocznij</button>
+                </div>
+                <div class="task-card">
+                    <div class="task-header">
+                        <h3>Job Interview</h3>
+                        <span class="difficulty intermediate">Średniozaawansowany</span>
+                    </div>
+                    <div class="task-details">
+                        <p class="category">Kategoria: Konwersacje</p>
+                        <p class="deadline">Termin: 2024-06-15</p>
+                        <p class="points">Punkty: 80</p>
+                    </div>
+                    <p class="task-description">Przygotuj się do rozmowy kwalifikacyjnej po angielsku.</p>
+                    <button class="btn btn-primary">Rozpocznij</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Angielski to Pestka. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- Modal logowania -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Logowanie</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Hasło:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            </form>
+            <p class="form-switch">Nie masz konta? <a href="#" id="showRegister">Zarejestruj się</a></p>
+        </div>
+    </div>
+
+    <!-- Modal rejestracji -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rejestracja</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Imię:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Hasło:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPasswordConfirm">Potwierdź hasło:</label>
+                    <input type="password" id="registerPasswordConfirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+            </form>
+            <p class="form-switch">Masz już konto? <a href="#" id="showLogin">Zaloguj się</a></p>
+        </div>
+    </div>
+
+    <!-- Modal dodawania zadania -->
+    <div class="modal" id="addTaskModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dodaj nowe zadanie</h2>
+            <form id="addTaskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Tytuł zadania:</label>
+                    <input type="text" id="taskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDifficulty">Poziom trudności:</label>
+                    <select id="taskDifficulty" required>
+                        <option value="beginner">Początkujący</option>
+                        <option value="intermediate">Średniozaawansowany</option>
+                        <option value="advanced">Zaawansowany</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="taskCategory">Kategoria:</label>
+                    <select id="taskCategory" required>
+                        <option value="grammar">Gramatyka</option>
+                        <option value="vocabulary">Słownictwo</option>
+                        <option value="pronunciation">Wymowa</option>
+                        <option value="conversation">Konwersacje</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="taskDeadline">Termin wykonania:</label>
+                    <input type="date" id="taskDeadline" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskPoints">Punkty:</label>
+                    <input type="number" id="taskPoints" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Opis zadania:</label>
+                    <textarea id="taskDescription" required maxlength="200"></textarea>
+                    <div class="char-counter" id="charCounter">0/200</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Dodaj zadanie</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Funkcja do tworzenia nowego zadania w interfejsie
+        function createTaskCard(task) {
+            const taskCard = document.createElement('div');
+            taskCard.className = 'task-card';
+            
+            // Mapowanie poziomów trudności na klasy CSS
+            const difficultyClasses = {
+                'beginner': 'beginner',
+                'intermediate': 'intermediate',
+                'advanced': 'advanced'
+            };
+
+            // Mapowanie kategorii na nazwy w języku polskim
+            const categoryNames = {
+                'grammar': 'Gramatyka',
+                'vocabulary': 'Słownictwo',
+                'pronunciation': 'Wymowa',
+                'conversation': 'Konwersacje'
+            };
+
+            taskCard.innerHTML = `
+                <div class="task-header">
+                    <h3>${task.title}</h3>
+                    <span class="difficulty ${difficultyClasses[task.difficulty]}">${task.difficulty === 'beginner' ? 'Początkujący' : task.difficulty === 'intermediate' ? 'Średniozaawansowany' : 'Zaawansowany'}</span>
+                </div>
+                <div class="task-details">
+                    <p class="category">Kategoria: ${categoryNames[task.category]}</p>
+                    <p class="deadline">Termin: ${task.deadline}</p>
+                    <p class="points">Punkty: ${task.points}</p>
+                </div>
+                <p class="task-description">${task.description}</p>
+                <button class="btn btn-primary">Rozpocznij</button>
+            `;
+
+            return taskCard;
+        }
+
+        // Sprawdzenie czy użytkownik jest zalogowany
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                updateUIForLoggedInUser(user);
+            }
+
+            // Obsługa licznika znaków
+            const taskDescription = document.getElementById('taskDescription');
+            const charCounter = document.getElementById('charCounter');
+            if (taskDescription && charCounter) {
+                taskDescription.addEventListener('input', () => {
+                    const length = taskDescription.value.length;
+                    charCounter.textContent = `${length}/200`;
+                    charCounter.classList.toggle('limit', length >= 200);
+                });
+            }
+
+            // Obsługa zamykania modalu dodawania zadania
+            const addTaskModal = document.getElementById('addTaskModal');
+            const closeButtons = document.querySelectorAll('.close');
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (addTaskModal) {
+                        addTaskModal.style.display = 'none';
+                    }
+                });
+            });
+
+            // Zamykanie modalu po kliknięciu poza nim
+            window.addEventListener('click', (e) => {
+                if (e.target === addTaskModal) {
+                    addTaskModal.style.display = 'none';
+                }
+            });
+        });
+
+        // Obsługa formularza dodawania zadania
+        const addTaskForm = document.getElementById('addTaskForm');
+        if (addTaskForm) {
+            addTaskForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const task = {
+                    title: document.getElementById('taskTitle').value,
+                    difficulty: document.getElementById('taskDifficulty').value,
+                    category: document.getElementById('taskCategory').value,
+                    deadline: document.getElementById('taskDeadline').value,
+                    points: document.getElementById('taskPoints').value,
+                    description: document.getElementById('taskDescription').value
+                };
+
+                // Dodanie nowego zadania do siatki
+                const tasksGrid = document.querySelector('.tasks-grid');
+                if (tasksGrid) {
+                    const newTaskCard = createTaskCard(task);
+                    tasksGrid.insertBefore(newTaskCard, tasksGrid.firstChild);
+                }
+
+                // Wyświetlenie powiadomienia i zamknięcie modalu
+                showNotification('Zadanie zostało dodane!', 'success');
+                const addTaskModal = document.getElementById('addTaskModal');
+                if (addTaskModal) {
+                    addTaskModal.style.display = 'none';
+                }
+                addTaskForm.reset();
+            });
+        }
+    </script>
+</body>
+</html> 

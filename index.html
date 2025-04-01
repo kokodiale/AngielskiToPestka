@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angielski to Pestka - Nauka języka angielskiego</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Angielski to Pestka" class="logo-image">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Strona główna</a>
+                <a href="tasks.html" class="nav-link">Zadania</a>
+                <a href="rewards.html" class="nav-link">Nagrody</a>
+                <a href="ranking.html" class="nav-link">Ranking</a>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Zaloguj się</button>
+                    <button class="btn btn-register">Zarejestruj się</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Nauka angielskiego nigdy nie była prostsza!</h2>
+                <p>Rozwijaj swoje umiejętności językowe poprzez interaktywne zadania i zdobywaj nagrody.</p>
+                <button class="btn btn-primary" onclick="showLoginModal()">Rozpocznij naukę</button>
+            </div>
+            <div class="cats-decoration"></div>
+        </section>
+
+        <section class="features-section">
+            <h2>Dlaczego warto uczyć się z nami?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Interaktywne zadania</h3>
+                    <p>Ucz się poprzez praktyczne ćwiczenia dostosowane do Twojego poziomu.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>System motywacyjny</h3>
+                    <p>Zbieraj punkty i wymieniaj je na nagrody.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Codzienne wyzwania</h3>
+                    <p>Utrzymuj regularność nauki dzięki systemowi streaków.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Rankingi</h3>
+                    <p>Rywalizuj z innymi użytkownikami i motywuj się do nauki.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Angielski to Pestka Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- Modal logowania -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Logowanie</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Hasło:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            </form>
+            <p class="form-switch">Nie masz konta? <a href="#" id="showRegister">Zarejestruj się</a></p>
+            <div class="modal-cats"></div>
+        </div>
+    </div>
+
+    <!-- Modal rejestracji -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rejestracja</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Imię:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Hasło:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPasswordConfirm">Potwierdź hasło:</label>
+                    <input type="password" id="registerPasswordConfirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+            </form>
+            <p class="form-switch">Masz już konto? <a href="#" id="showLogin">Zaloguj się</a></p>
+            <div class="modal-cats"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

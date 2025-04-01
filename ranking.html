@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - Angielski to Pestka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Angielski to Pestka" class="logo-image">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Strona główna</a>
+                <a href="tasks.html" class="nav-link">Zadania</a>
+                <a href="rewards.html" class="nav-link">Nagrody</a>
+                <a href="ranking.html" class="nav-link active">Ranking</a>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Zaloguj się</button>
+                    <button class="btn btn-register">Zarejestruj się</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div id="auth-required" class="auth-required-message">
+            <h2>Dostęp wymaga logowania</h2>
+            <p>Zaloguj się, aby zobaczyć ranking i swoją pozycję!</p>
+            <button class="btn btn-primary" onclick="showLoginModal()">Zaloguj się</button>
+        </div>
+
+        <div id="ranking-content" class="ranking-container" style="display: none;">
+            <h2>Ranking użytkowników</h2>
+            <div class="ranking-filters">
+                <button class="btn btn-secondary active">Tygodniowy</button>
+                <button class="btn btn-secondary">Miesięczny</button>
+                <button class="btn btn-secondary">Ogólny</button>
+            </div>
+            <div class="ranking-list">
+                <div class="ranking-item">
+                    <div class="rank">1</div>
+                    <div class="user-info">
+                        <span class="user-name">Jan Kowalski</span>
+                        <span class="user-points">2500 pkt</span>
+                    </div>
+                </div>
+                <div class="ranking-item">
+                    <div class="rank">2</div>
+                    <div class="user-info">
+                        <span class="user-name">Anna Nowak</span>
+                        <span class="user-points">2300 pkt</span>
+                    </div>
+                </div>
+                <div class="ranking-item">
+                    <div class="rank">3</div>
+                    <div class="user-info">
+                        <span class="user-name">Piotr Wiśniewski</span>
+                        <span class="user-points">2100 pkt</span>
+                    </div>
+                </div>
+                <div class="ranking-item">
+                    <div class="rank">4</div>
+                    <div class="user-info">
+                        <span class="user-name">Maria Dąbrowska</span>
+                        <span class="user-points">2000 pkt</span>
+                    </div>
+                </div>
+                <div class="ranking-item">
+                    <div class="rank">5</div>
+                    <div class="user-info">
+                        <span class="user-name">Tomasz Lewandowski</span>
+                        <span class="user-points">1900 pkt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Angielski to Pestka. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- Modal logowania -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Logowanie</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Hasło:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            </form>
+            <p class="form-switch">Nie masz konta? <a href="#" id="showRegister">Zarejestruj się</a></p>
+        </div>
+    </div>
+
+    <!-- Modal rejestracji -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rejestracja</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Imię:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Hasło:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPasswordConfirm">Potwierdź hasło:</label>
+                    <input type="password" id="registerPasswordConfirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+            </form>
+            <p class="form-switch">Masz już konto? <a href="#" id="showLogin">Zaloguj się</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const authRequired = document.getElementById('auth-required');
+            const rankingContent = document.getElementById('ranking-content');
+
+            if (!user) {
+                if (authRequired) authRequired.style.display = 'block';
+                if (rankingContent) rankingContent.style.display = 'none';
+            } else {
+                updateUIForLoggedInUser(user);
+            }
+        });
+    </script>
+</body>
+</html> 

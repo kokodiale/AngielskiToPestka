@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagrody - Angielski to Pestka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Angielski to Pestka" class="logo-image">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Strona główna</a>
+                <a href="tasks.html" class="nav-link">Zadania</a>
+                <a href="rewards.html" class="nav-link active">Nagrody</a>
+                <a href="ranking.html" class="nav-link">Ranking</a>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Zaloguj się</button>
+                    <button class="btn btn-register">Zarejestruj się</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div id="auth-required" class="auth-required-message">
+            <h2>Dostęp wymaga logowania</h2>
+            <p>Zaloguj się, aby otrzymać dostęp do nagród i wymienić swoje punkty!</p>
+            <button class="btn btn-primary" onclick="showLoginModal()">Zaloguj się</button>
+        </div>
+
+        <div id="rewards-content" class="rewards-container" style="display: none;">
+            <div class="user-points">
+                <h2>Twoje punkty: <span id="userPoints">0</span></h2>
+            </div>
+            <div class="rewards-grid">
+                <div class="reward-card">
+                    <h3>Odbierz 1 dzień premium</h3>
+                    <p>Koszt: 100 punktów</p>
+                    <button class="btn btn-primary">Wymień</button>
+                </div>
+                <div class="reward-card">
+                    <h3>Odbierz 7 dni premium</h3>
+                    <p>Koszt: 600 punktów</p>
+                    <button class="btn btn-primary">Wymień</button>
+                </div>
+                <div class="reward-card">
+                    <h3>Odbierz 30 dni premium</h3>
+                    <p>Koszt: 2000 punktów</p>
+                    <button class="btn btn-primary">Wymień</button>
+                </div>
+                <div class="reward-card">
+                    <h3>Odbierz 90 dni premium</h3>
+                    <p>Koszt: 5000 punktów</p>
+                    <button class="btn btn-primary">Wymień</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Angielski to Pestka. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- Modal logowania -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Logowanie</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Hasło:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            </form>
+            <p class="form-switch">Nie masz konta? <a href="#" id="showRegister">Zarejestruj się</a></p>
+        </div>
+    </div>
+
+    <!-- Modal rejestracji -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rejestracja</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Imię:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Hasło:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPasswordConfirm">Potwierdź hasło:</label>
+                    <input type="password" id="registerPasswordConfirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+            </form>
+            <p class="form-switch">Masz już konto? <a href="#" id="showLogin">Zaloguj się</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const authRequired = document.getElementById('auth-required');
+            const rewardsContent = document.getElementById('rewards-content');
+
+            if (!user) {
+                if (authRequired) authRequired.style.display = 'block';
+                if (rewardsContent) rewardsContent.style.display = 'none';
+            } else {
+                updateUIForLoggedInUser(user);
+            }
+        });
+    </script>
+</body>
+</html> 
